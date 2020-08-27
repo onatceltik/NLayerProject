@@ -18,6 +18,7 @@ namespace UdemyNLayerProject.Data.Configurations
             builder.Property(x => x.Stock).IsRequired();
             builder.Property(x => x.Price).IsRequired().HasColumnType("decimal(18,2)"); // total 18 char, after comma 2 char
             builder.Property(x => x.InnerBarcode).HasMaxLength(50);
+            builder.ToTable("Products");
         }
     }
 }
