@@ -25,14 +25,17 @@ namespace UdemyNLayerProject.API
         }
 
         public IConfiguration Configuration { get; }
-
+        
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>(options =>
             {
                 options.UseSqlServer(
-                    Configuration["ConnectionStrings:SqlConStr"].ToString());
+                    Configuration["ConnectionStrings:SqlConStr"].ToString(),
+                    o => {
+                        o.MigrationsAssembly("UdemyNLayerProject.Data");
+                    });
             });
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddControllers();
