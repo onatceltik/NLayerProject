@@ -4,9 +4,9 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UdemyNLayerProject.Core.Repository
+namespace UdemyNLayerProject.Core.Service
 {
-    public interface IRepository<T> where T : class // specifies that this entity T must be a class
+    public interface IService<T> where T : class
     {
         Task<T> GetByIdAsync(int Id);
 

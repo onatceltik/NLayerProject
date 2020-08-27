@@ -4,10 +4,12 @@ using System.Text;
 using System.Threading.Tasks;
 using UdemyNLayerProject.Core.Models;
 
-namespace UdemyNLayerProject.Core.Repository
+namespace UdemyNLayerProject.Core.Service
 {
-    public interface IProductRepository : IRepository<Product>
+    public interface IProductService : IService<Product>
     {
         Task<Product> GetWithCategoryByIdAsync(int productId);
+
+        // Other product related methods
     }
 }
