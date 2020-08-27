@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using UdemyNLayerProject.Core.Models;
 using UdemyNLayerProject.Data.Configurations;
+using UdemyNLayerProject.Data.Seeds;
 
 namespace UdemyNLayerProject.Data
 {
@@ -19,8 +20,13 @@ namespace UdemyNLayerProject.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // These create tables
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
+
+            // These add initial rows
+            modelBuilder.ApplyConfiguration(new ProductSeed(new int[] { 1, 2 }));
+            modelBuilder.ApplyConfiguration(new CategorySeed(new int[] { 1, 2}));
         }
     }
 }
