@@ -15,7 +15,7 @@ namespace UdemyNLayerProject.Data.Repositories
         // AppDbContext allows us to fetch entities
         private AppDbContext _appDbContext { get => _context as AppDbContext; }
 
-        public ProductRepository(DbContext context) : base(context)
+        public ProductRepository(AppDbContext context) : base(context)
         {
         }
 
