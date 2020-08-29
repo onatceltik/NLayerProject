@@ -12,7 +12,7 @@ namespace UdemyNLayerProject.Core.Repository
 
         Task<IEnumerable<T>> GetAllAsync();
 
-        IEnumerable<T> Where(Expression<Func<T, bool>> predicate);
+        Task<IEnumerable<T>> Where(Expression<Func<T, bool>> predicate);
 
         //for exp: category.SingleOrDefaultAsync(x => x.Name = "Books")
         Task<T> SingleOrDefaultAsync(Expression<Func<T, bool>> predicate);

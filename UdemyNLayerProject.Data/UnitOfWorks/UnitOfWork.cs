@@ -14,7 +14,7 @@ namespace UdemyNLayerProject.Data.UnitOfWorks
         private ProductRepository _productRepository;
         private CategoryRepository _categoryRepository;
 
-        // ?? means if there is no repo create a neww one
+        // ?? means if there is no repo create a new one
         public IProductRepository Products => _productRepository
             = _productRepository ?? new ProductRepository(_context);
 

@@ -12,14 +12,14 @@ namespace UdemyNLayerProject.Core.Service
 
         Task<IEnumerable<T>> GetAllAsync();
 
-        Task<IEnumerable<T>> Find(Expression<Func<T, bool>> predicate);
+        Task<IEnumerable<T>> Where(Expression<Func<T, bool>> predicate);
 
         //for exp: category.SingleOrDefaultAsync(x => x.Name = "Books")
         Task<T> SingleOrDefaultAsync(Expression<Func<T, bool>> predicate);
 
-        Task AddAsync(T entity);
+        Task<T> AddAsync(T entity);
 
-        Task AddRangeAsync(IEnumerable<T> entities);
+        Task<IEnumerable<T>> AddRangeAsync(IEnumerable<T> entities);
 
         void Remove(T entity);
 
