@@ -1,17 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using UdemyNLayerProject.API.Extensions;
+using UdemyNLayerProject.API.Filters;
 using UdemyNLayerProject.Core.Repository;
 using UdemyNLayerProject.Core.Service;
 using UdemyNLayerProject.Core.UnitOfWork;
@@ -36,6 +32,8 @@ namespace UdemyNLayerProject.API
         {
             services.AddAutoMapper(typeof(Startup));
 
+            services.AddScoped<ProductNotFoundFilter>();
+
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped(typeof(IService<>), typeof(Service<>));
             services.AddScoped<ICategoryService, CategoryService>();
@@ -51,6 +49,13 @@ namespace UdemyNLayerProject.API
                     });
             });
             services.AddControllers();
+
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.SuppressModelStateInvalidFilter = true;
+            });
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,6 +65,8 @@ namespace UdemyNLayerProject.API
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCustomException();
 
             app.UseHttpsRedirection();
 

@@ -10,13 +10,13 @@ namespace UdemyNLayerProject.API.DTOs
     {
         public int Id { get; set; }
 
-        //[Required]
+        [Required(ErrorMessage = "{0} field must be filled!")]
         public string Name { get; set; }
 
-        //[Required]
+        [Range(1, int.MaxValue, ErrorMessage = "{0} field must be filled!")]
         public int Stock { get; set; }
 
-        //[Required]
+        [Range(1, int.MaxValue, ErrorMessage = "{0} field must be filled!")]
         public decimal Price { get; set; }
 
         public int CategoryId { get; set; }
